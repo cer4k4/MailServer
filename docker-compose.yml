@@ -1,0 +1,69 @@
+services:
+
+  mailserver:
+    image: mailserver/docker-mailserver:latest
+    container_name: mailserver
+
+    # You're Docmain and Check you're /etc/hosts file for domain
+    hostname: mail
+    domainname: lab
+
+    ports:
+      - "25:25"
+      - "143:143"
+      - "587:587"
+      - "993:993"
+
+    volumes:
+      - ./mail-data:/var/mail
+      - ./mail-state:/var/mail-state
+      - ./mail-logs:/var/log/mail
+      - ./config:/tmp/docker-mailserver
+
+    environment:
+      - ENABLE_RSPAMD=0
+      - ENABLE_CLAMAV=0
+      - ENABLE_FAIL2BAN=0
+      - ENABLE_POSTGREY=0
+
+    cap_add:
+      - NET_ADMIN
+
+    restart: unless-stopped
+
+  mail-init:
+    image: mailserver/docker-mailserver:latest
+    depends_on:
+      - mailserver
+    entrypoint: >
+      sh -c "
+      sleep 15 &&
+      setup email add admin@lab.ir admin123456 &&
+      setup email add info@lab.ir 123456
+      "
+    volumes:
+      - ./mail-data:/var/mail
+      - ./mail-state:/var/mail-state
+      - ./config:/tmp/docker-mailserver
+
+  # it's Dashboard for login
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    container_name: roundcube
+
+    depends_on:
+      - mailserver
+
+    ports:
+      - "8080:80"
+
+    environment:
+      ROUNDCUBEMAIL_DEFAULT_HOST: mailserver
+      ROUNDCUBEMAIL_DEFAULT_PORT: 143
+
+      ROUNDCUBEMAIL_SMTP_SERVER: mailserver
+      ROUNDCUBEMAIL_SMTP_PORT: 587
+
+      ROUNDCUBEMAIL_DB_TYPE: sqlite
+
+    restart: unless-stopped
