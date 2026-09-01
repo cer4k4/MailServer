@@ -53,3 +53,8 @@ smtpd_sender_restrictions =
 
 # Size
 message_size_limit = 52428800
+
+virtual_mailbox_domains = pgsql:/etc/postfix/pgsql-virtual-mailbox-domains.cf
+virtual_mailbox_maps    = pgsql:/etc/postfix/pgsql-virtual-mailbox-maps.cf
+virtual_alias_maps      = pgsql:/etc/postfix/pgsql-virtual-alias-maps.cf
+virtual_mailbox_base    = /var/mail

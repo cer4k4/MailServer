@@ -43,6 +43,27 @@ services:
     networks:
       - mailnet
 
+
+  postfixadmin-init:
+    image: postfixadmin:latest
+    container_name: postfixadmin-init
+    depends_on:
+      - postgres
+      - postfixadmin
+    networks:
+      - mailnet
+    entrypoint: ["/bin/bash", "-c"]
+    command: >
+      "
+      sleep 10;
+      php /var/www/html/scripts/postfixadmin-cli admin add admin@jahangirkhodro.ir
+      --password 'AdminPassword123!'
+      --password2 'AdminPassword123!'
+      --superadmin 1
+      || true
+      "
+
+
   postfix:
     build:
       context: ./postfix
