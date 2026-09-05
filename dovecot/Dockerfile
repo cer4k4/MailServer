@@ -14,6 +14,8 @@ RUN groupadd -g 5000 vmail && \
 RUN mkdir -p /var/mail && \
     chown -R vmail:vmail /var/mail
 
+RUN mkdir -p /etc/dovecot/certs
+
 COPY dovecot.conf /etc/dovecot/dovecot.conf
 COPY dovecot-sql.conf.ext /etc/dovecot/dovecot-sql.conf.ext
 

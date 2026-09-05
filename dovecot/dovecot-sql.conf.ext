@@ -2,7 +2,7 @@ driver = pgsql
 
 connect = host=postgres dbname=postfixadmin user=postgres password=postgres
 
-default_pass_scheme = SHA512-CRYPT
+default_pass_scheme = BLF-CRYPT
 
 password_query = SELECT username AS user, password FROM mailbox WHERE username='%u' AND active='t'
 

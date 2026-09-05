@@ -1,26 +1,92 @@
 services:
 
+# postgres:
+#   image: postgres:16
+#   container_name: postgres
+#   restart: always
+#   ports:
+#     - "5432:5432"
+#   environment:
+#     POSTGRES_USER: postgres
+#     POSTGRES_PASSWORD: postgres
+#     POSTGRES_DB: postfixadmin
+#   volumes:
+#     - postgres-data:/var/lib/postgresql/data
+
+#   networks:
+#     - mailnet
+
+
+# postfixadmin:
+#   image: postfixadmin:latest
+#   container_name: postfixadmin
+#   restart: always
+
+#   depends_on:
+#     - postgres
+
+#   ports:
+#     - "8000:80"
+
+#   environment:
+#     POSTFIXADMIN_DB_TYPE: pgsql
+#     POSTFIXADMIN_DB_HOST: postgres
+#     POSTFIXADMIN_DB_USER: postgres
+#     POSTFIXADMIN_DB_NAME: postfixadmin
+#     POSTFIXADMIN_DB_PASSWORD: postgres
+#     POSTFIXADMIN_DKIM: "YES"
+#     POSTFIXADMIN_DKIM_ALL_ADMINS: "NO"
+#     POSTFIXADMIN_SETUP_PASSWORD: "Qtlsd@k47"
+#     POSTFIXADMIN_ENCRYPT: dovecot:SHA512-CRYPT
+
+#   volumes:
+#     - ./postfixadmin/config.local.php:/var/www/html/config.local.php
+
+#   networks:
+#     - mailnet
+
+
+# postfixadmin-init:
+#   image: postfixadmin:latest
+#   container_name: postfixadmin-init
+#   depends_on:
+#     - postgres
+#     - postfixadmin
+#   networks:
+#     - mailnet
+#   entrypoint: ["/bin/bash", "-c"]
+#   command: >
+#     "
+#     sleep 10;
+#     php /var/www/html/scripts/postfixadmin-cli admin add admin@jahangirkhodro.ir
+#     --password 'AdminPassword123!'
+#     --password2 'AdminPassword123!'
+#     --superadmin 1
+#     || true
+#     "
   postgres:
-    image: postgres:16
-    container_name: postgres
-    restart: always
-    ports:
-      - "5432:5432"
+    image: postgres:17
+    container_name: postfixadmin-postgres
+    restart: unless-stopped
+
     environment:
+      POSTGRES_DB: postfixadmin
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postfixadmin
+
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postfixadmin_postgres_data:/var/lib/postgresql/data
+
+    ports:
+      - "5432:5432"
 
     networks:
       - mailnet
 
-
   postfixadmin:
     image: postfixadmin:latest
     container_name: postfixadmin
-    restart: always
+    restart: unless-stopped
 
     depends_on:
       - postgres
@@ -34,35 +100,15 @@ services:
       POSTFIXADMIN_DB_USER: postgres
       POSTFIXADMIN_DB_NAME: postfixadmin
       POSTFIXADMIN_DB_PASSWORD: postgres
+      POSTFIXADMIN_SETUP_PASSWORD: changeme
+      POSTFIXADMIN_ENCRYPT: md5crypt
 
-      POSTFIXADMIN_ENCRYPT: dovecot:SHA512-CRYPT
 
     volumes:
-      - ./postfixadmin/config.local.php:/var/www/html/config.local.php
+      - postfixadmin_data:/var/www/html
 
     networks:
       - mailnet
-
-
-  postfixadmin-init:
-    image: postfixadmin:latest
-    container_name: postfixadmin-init
-    depends_on:
-      - postgres
-      - postfixadmin
-    networks:
-      - mailnet
-    entrypoint: ["/bin/bash", "-c"]
-    command: >
-      "
-      sleep 10;
-      php /var/www/html/scripts/postfixadmin-cli admin add admin@jahangirkhodro.ir
-      --password 'AdminPassword123!'
-      --password2 'AdminPassword123!'
-      --superadmin 1
-      || true
-      "
-
 
   postfix:
     build:
@@ -104,6 +150,8 @@ services:
     volumes:
       - maildata:/var/mail
       - ./certs:/etc/dovecot/certs:ro
+      - ./certs/fullchain.pem:/etc/dovecot/certs/fullchain.pem:ro
+      - ./certs/privkey.pem:/etc/dovecot/certs/privkey.pem:ro
 
     networks:
       - mailnet
@@ -127,7 +175,6 @@ services:
 
       ROUNDCUBEMAIL_SMTP_SERVER: tls://postfix
       ROUNDCUBEMAIL_SMTP_PORT: 587
-
       ROUNDCUBEMAIL_DB_TYPE: pgsql
       ROUNDCUBEMAIL_DB_HOST: postgres
       ROUNDCUBEMAIL_DB_USER: postgres
@@ -187,7 +234,8 @@ services:
 volumes:
   postgres-data:
   maildata:
-
+  postfixadmin_postgres_data:
+  postfixadmin_data:
 
 networks:
   mailnet:
