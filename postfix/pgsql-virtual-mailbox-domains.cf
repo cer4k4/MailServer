@@ -1,5 +1,0 @@
-user = postgres
-password = postgres
-hosts = postgres
-dbname = postfixadmin
-query = SELECT domain FROM domain WHERE domain='%s' AND active = '1'

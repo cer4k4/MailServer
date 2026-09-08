@@ -1,6 +1,0 @@
-hosts = postgres
-user = postgres
-password = postgres
-dbname = postfixadmin
-
-query = SELECT goto FROM alias WHERE address='%s' AND active='t'

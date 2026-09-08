@@ -1,9 +1,0 @@
-driver = pgsql
-
-connect = host=postgres dbname=postfixadmin user=postgres password=postgres
-
-default_pass_scheme = BLF-CRYPT
-
-password_query = SELECT username AS user, password FROM mailbox WHERE username='%u' AND active='t'
-
-user_query = SELECT 5000 AS uid,5000 AS gid,'/var/mail/%d/%n' AS home, 'maildir:/var/mail/%d/%n/Maildir' AS mail FROM mailbox WHERE username='%u' AND active='t'

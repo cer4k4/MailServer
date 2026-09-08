@@ -1,6 +1,0 @@
-hosts = postgres
-user = postgres
-password = postgres
-dbname = postfixadmin
-
-query = SELECT maildir FROM mailbox WHERE username='%s' AND active='t'
