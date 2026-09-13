@@ -13,12 +13,12 @@ import { UserRoles } from "../../shared/models/enum";
 
 const userRouter= express.Router()
 
-userRouter.post("/create",RegisterUserDto,DataValidator,userController.registerUser)
+//userRouter.post("/create",RegisterUserDto,DataValidator,userController.registerUser)
 
-userRouter.get("/byId",middleware.Authentication,middleware.Authorization([UserRoles.ADMIN,UserRoles.USER]),userController.getUser)
+//userRouter.get("/byId",middleware.Authentication,middleware.Authorization([UserRoles.ADMIN,UserRoles.USER]),userController.getUser)
 
-userRouter.patch("/update",middleware.Authorization([UserRoles.ADMIN,UserRoles.USER]),UpdateUserDto,DataValidator,middleware.Authentication,userController.updateUser)
+//userRouter.patch("/update",middleware.Authorization([UserRoles.ADMIN,UserRoles.USER]),UpdateUserDto,DataValidator,middleware.Authentication,userController.updateUser)
 
-userRouter.post("/login",LoginUserDto,DataValidator,userController.loginUser)
+//userRouter.post("/login",LoginUserDto,DataValidator,userController.loginUser)
 
 export = userRouter;
