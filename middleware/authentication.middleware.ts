@@ -39,7 +39,7 @@ async function Authentication(req: RequestWithPayload, res: Response, next: Next
     const userFound = await model.UserModel.findById(payload.userId) as IUser;
     
     if (!userFound) {
-      const response = new SuccessResponse({},false,404,systemErrors.USERNOTFOUNDED)
+      const response = new SuccessResponse({},false,404,systemErrors.USERNOTFOUNDEDTOKEN)
       return res.status(404).json(response);
     }
 

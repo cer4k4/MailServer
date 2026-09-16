@@ -12,6 +12,7 @@ export enum systemErrors {
     SERVERERROR = "عملیات با شکست مواجه شد",
     SUCCESSFUL = "عملیات با موفقیت انجام شد",
     USERNOTFOUNDED = "چنین کاربری وجود ندارد",
+    USERNOTFOUNDEDTOKEN = "چنین کاربری وجود ندارد - توکن",
     TOKENNOTFOUNDED = "برای دسترسی به این بخش میبایست لاگین کنید",
     PERMISSIONDENIED = "کاربر گرامی شما به این بخش دسترسی ندارید",
     TOKENISEXPIRED = "توکن شما منقضی شده یکبار دیگه لاگین کنید",

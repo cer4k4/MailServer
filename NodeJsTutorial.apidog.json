@@ -243,6 +243,130 @@
               }
             },
             {
+              "name": "Admin login",
+              "api": {
+                "id": "22037626",
+                "method": "post",
+                "path": "/admin/login",
+                "parameters": {},
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "32480087",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "token"
+                      ]
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "mediaType": "",
+                  "examples": [
+                    {
+                      "mediaType": "application/json",
+                      "value": "{\n    \"username\":\"admin\",\n    \"password\":\"124S@d15675\"\n}"
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "",
+                "tags": [],
+                "status": "developing",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 60,
+                "cases": [
+                  {
+                    "id": 31538436,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "admin",
+                    "responseId": "32480087",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n    \"username\":\"admin\",\n    \"password\":\"Aa@123456\"\n}",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "requestResult": "{\"id\":\"temp.8f097b5d-cd97-4964-9e3d-2c57e8891e60\",\"cursor\":{\"position\":0,\"iteration\":0,\"length\":1,\"cycles\":1,\"empty\":false,\"eof\":false,\"bof\":true,\"cr\":false,\"ref\":\"8f097b5d-cd97-4964-9e3d-2c57e8891e60\",\"requestIndex\":0,\"httpRequestId\":\"35837b02-c999-4733-899c-3490c7329eb6\"},\"type\":\"http\",\"response\":{\"id\":\"de96b332-c14e-4ece-8f46-2cec4be259b7\",\"status\":\"OK\",\"code\":200,\"header\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Access-Control-Allow-Origin\",\"value\":\"*\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"328\"},{\"key\":\"ETag\",\"value\":\"W/\\\"148-VcZTDQmkFhP/nuU4fv81J7J15RA\\\"\"},{\"key\":\"Date\",\"value\":\"Tue, 16 Dec 2025 20:46:59 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"trailer\":[],\"stream\":{\"type\":\"Buffer\",\"data\":[123,34,115,117,99,99,101,115,115,102,117,108,108,121,34,58,116,114,117,101,44,34,100,97,116,97,34,58,123,34,116,111,107,101,110,34,58,34,101,121,74,104,98,71,99,105,79,105,74,73,85,122,73,49,78,105,73,115,73,110,82,53,99,67,73,54,73,107,112,88,86,67,74,57,46,101,121,74,49,99,50,86,121,83,87,81,105,79,105,73,50,79,84,78,109,77,109,81,120,78,71,82,106,78,106,86,108,77,106,69,52,90,84,81,120,79,87,70,107,90,87,85,105,76,67,74,121,98,50,120,108,73,106,111,105,89,87,82,116,97,87,52,105,76,67,74,112,89,88,81,105,79,106,69,51,78,106,85,53,77,84,103,119,77,84,107,115,73,109,86,52,99,67,73,54,77,84,99,50,78,84,107,121,77,84,89,120,79,88,48,46,110,49,65,84,112,72,77,102,121,68,78,120,65,52,118,54,116,48,55,103,55,84,55,111,118,110,48,75,104,112,75,110,87,79,117,111,56,83,54,121,111,113,52,34,44,34,114,111,108,101,34,58,34,97,100,109,105,110,34,125,44,34,115,116,97,116,117,115,67,111,100,101,34,58,50,48,48,44,34,109,101,115,115,97,103,101,34,58,34,216,185,217,133,217,132,219,140,216,167,216,170,32,216,168,216,167,32,217,133,217,136,217,129,217,130,219,140,216,170,32,216,167,217,134,216,172,216,167,217,133,32,216,180,216,175,34,125]},\"cookie\":[],\"responseTime\":185,\"responseSize\":328,\"type\":\"http\",\"tempFilePath\":\"\",\"timingPhases\":{\"prepare\":2.249790000030771,\"wait\":1.6800550000043586,\"dns\":0,\"tcp\":0.5003679998917505,\"firstByte\":179.94682200008538,\"download\":2.6304049999453127,\"process\":0.3162640000227839,\"total\":187.32370399998035}},\"request\":{\"url\":{\"protocol\":\"http\",\"port\":\"4000\",\"path\":[\"users\",\"login\"],\"host\":[\"127\",\"0\",\"0\",\"1\"],\"query\":[],\"variable\":[]},\"header\":[{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Content-Type\",\"value\":\"application/json\"},{\"key\":\"Accept\",\"value\":\"*/*\",\"system\":true},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\",\"system\":true},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\",\"system\":true},{\"key\":\"Connection\",\"value\":\"keep-alive\",\"system\":true},{\"key\":\"Content-Length\",\"value\":54,\"system\":true}],\"method\":\"POST\",\"baseUrl\":\"127.0.0.1:4000\",\"body\":{\"mode\":\"raw\",\"raw\":\"{\\n    \\\"username\\\":\\\"admin\\\",\\n    \\\"password\\\":\\\"Aa@123456\\\"\\n}\",\"generateMode\":\"normal\",\"type\":\"application/json\"},\"type\":\"http\"},\"history\":{\"execution\":{\"verbose\":false,\"sessions\":{},\"data\":[{\"request\":{\"method\":\"POST\",\"href\":\"http://127.0.0.1:4000/users/login\",\"headers\":[{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Content-Type\",\"value\":\"application/json\"},{\"key\":\"Accept\",\"value\":\"*/*\"},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\"},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Content-Length\",\"value\":\"54\"}],\"httpVersion\":\"1.1\"},\"response\":{\"statusCode\":200,\"headers\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Access-Control-Allow-Origin\",\"value\":\"*\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"328\"},{\"key\":\"ETag\",\"value\":\"W/\\\"148-VcZTDQmkFhP/nuU4fv81J7J15RA\\\"\"},{\"key\":\"Date\",\"value\":\"Tue, 16 Dec 2025 20:46:59 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"httpVersion\":\"1.1\"},\"timings\":{\"start\":1765918019746,\"requestStart\":1765918019748,\"offset\":{\"request\":2.249790000030771,\"socket\":3.9298450000351295,\"connect\":4.43021299992688,\"response\":184.37703500001226,\"end\":187.00743999995757,\"lookup\":3.9298450000351295,\"done\":187.32370399998035}}}]}},\"responseValidation\":{\"schema\":{\"valid\":false,\"message\":\"data should have required property token\",\"errors\":[{\"keyword\":\"required\",\"dataPath\":\"\",\"schemaPath\":\"#/required\",\"params\":{\"missingProperty\":\"token\"},\"message\":\"should have required property token\"}]},\"responseCode\":{\"valid\":true}},\"passed\":false,\"timings\":{\"started\":1765918019733,\"preProcessorsStarted\":1765918019736,\"preProcessorsCompleted\":1765918019736,\"postProcessorsStarted\":1765918019936,\"postProcessorsCompleted\":1765918019936,\"completed\":1765918020010},\"metaInfo\":{\"httpApiId\":22037626,\"httpApiCaseId\":31538436,\"httpApiName\":\"User Login\",\"httpApiPath\":\"/users/login\",\"httpApiMethod\":\"post\",\"httpApiCaseName\":\"admin\",\"moduleId\":903739}}",
+                    "visibility": "INHERITED",
+                    "moduleId": 903739,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 903739,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
               "name": "Get By UserId",
               "api": {
                 "id": "22499528",
@@ -1069,212 +1193,6 @@
                       "disableUrlEncoding": false
                     },
                     "requestResult": "{\"id\":\"temp.c56f5b65-57ad-4840-b77b-bb02060ca886\",\"cursor\":{\"position\":0,\"iteration\":0,\"length\":1,\"cycles\":1,\"empty\":false,\"eof\":false,\"bof\":true,\"cr\":false,\"ref\":\"c56f5b65-57ad-4840-b77b-bb02060ca886\",\"requestIndex\":0,\"httpRequestId\":\"6de2ddf5-396a-4831-80f6-b1beba5a7efb\"},\"type\":\"http\",\"response\":{\"id\":\"8b22092e-4a98-4aff-8eef-bf4cc75ea9cf\",\"status\":\"OK\",\"code\":200,\"header\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"1015\"},{\"key\":\"ETag\",\"value\":\"W/\\\"3f7-sO2l8sYbxDXT5pVOYQZBFtRVe7w\\\"\"},{\"key\":\"Date\",\"value\":\"Sun, 13 Sep 2026 11:11:17 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"trailer\":[],\"stream\":{\"type\":\"Buffer\",\"data\":[123,34,115,117,99,99,101,115,115,102,117,108,108,121,34,58,116,114,117,101,44,34,100,97,116,97,34,58,91,123,34,95,105,100,34,58,34,54,97,97,49,55,56,55,102,98,57,57,101,55,52,50,52,101,98,54,101,53,55,49,101,34,44,34,117,115,101,114,110,97,109,101,34,58,34,97,100,109,105,110,34,44,34,102,117,108,108,78,97,109,101,34,58,34,65,100,109,105,110,34,44,34,114,111,108,101,34,58,34,97,100,109,105,110,34,44,34,112,97,115,115,119,111,114,100,34,58,34,36,50,98,36,49,48,36,83,55,84,46,70,101,56,117,90,74,79,101,82,108,83,111,76,75,118,122,51,79,121,78,77,90,51,87,103,81,55,89,102,100,104,78,114,122,110,57,67,67,75,101,121,68,104,72,74,115,50,89,67,34,44,34,99,114,101,97,116,101,100,65,116,34,58,49,55,56,56,57,54,55,48,51,57,57,53,54,44,34,117,112,100,97,116,101,100,65,116,34,58,49,55,56,56,57,54,55,48,51,57,57,53,54,44,34,95,95,118,34,58,48,125,44,123,34,95,105,100,34,58,34,54,97,97,52,102,99,52,54,55,99,101,52,55,55,49,101,48,51,49,49,55,102,102,52,34,44,34,117,115,101,114,110,97,109,101,34,58,34,99,101,50,50,114,52,107,52,34,44,34,102,117,108,108,78,97,109,101,34,58,34,97,108,105,119,51,52,50,107,97,114,105,109,105,34,44,34,114,111,108,101,34,58,34,117,115,101,114,34,44,34,112,97,115,115,119,111,114,100,34,58,34,36,50,98,36,49,48,36,76,110,98,74,49,122,66,108,83,115,98,73,103,52,74,86,109,66,86,107,87,101,69,78,98,122,86,109,73,66,81,68,104,111,57,80,71,102,104,99,85,112,119,80,102,51,52,71,117,76,83,106,67,34,44,34,99,114,101,97,116,101,100,65,116,34,58,49,55,56,57,49,57,55,51,56,50,56,52,50,44,34,117,112,100,97,116,101,100,65,116,34,58,49,55,56,57,49,57,55,51,56,50,56,52,50,44,34,95,95,118,34,58,48,125,44,123,34,95,105,100,34,58,34,54,97,97,54,54,54,102,98,54,100,50,55,54,48,51,54,48,52,102,52,50,100,101,102,34,44,34,117,115,101,114,110,97,109,101,34,58,34,65,100,109,105,110,34,44,34,102,117,108,108,78,97,109,101,34,58,34,65,100,109,105,110,34,44,34,114,111,108,101,34,58,34,97,100,109,105,110,34,44,34,112,97,115,115,119,111,114,100,34,58,34,36,50,98,36,49,48,36,75,68,103,113,85,85,102,69,103,121,50,90,113,53,100,88,69,107,49,117,68,101,71,121,99,72,55,89,47,71,100,78,114,109,81,111,74,78,90,70,80,85,68,110,107,111,120,49,89,112,107,66,121,34,44,34,99,114,101,97,116,101,100,65,116,34,58,49,55,56,57,50,57,48,50,51,53,52,49,50,44,34,117,112,100,97,116,101,100,65,116,34,58,49,55,56,57,50,57,48,50,51,53,52,49,50,44,34,95,95,118,34,58,48,125,44,123,34,95,105,100,34,58,34,54,97,97,54,54,55,48,49,54,100,50,55,54,48,51,54,48,52,102,52,50,100,102,48,34,44,34,117,115,101,114,110,97,109,101,34,58,34,50,51,52,53,50,53,119,115,53,54,57,50,34,44,34,102,117,108,108,78,97,109,101,34,58,34,97,108,105,50,107,97,114,105,109,105,34,44,34,114,111,108,101,34,58,34,117,115,101,114,34,44,34,112,97,115,115,119,111,114,100,34,58,34,36,50,98,36,49,48,36,101,50,74,122,85,108,84,81,98,115,70,109,80,115,67,121,50,99,103,107,100,79,49,55,103,74,84,50,51,97,118,53,74,70,76,87,100,90,116,79,103,83,66,79,52,48,53,47,118,120,48,105,113,34,44,34,99,114,101,97,116,101,100,65,116,34,58,49,55,56,57,50,57,48,50,52,49,54,57,52,44,34,117,112,100,97,116,101,100,65,116,34,58,49,55,56,57,50,57,48,50,52,49,54,57,52,44,34,95,95,118,34,58,48,125,93,44,34,115,116,97,116,117,115,67,111,100,101,34,58,50,48,48,44,34,109,101,115,115,97,103,101,34,58,34,216,185,217,133,217,132,219,140,216,167,216,170,32,216,168,216,167,32,217,133,217,136,217,129,217,130,219,140,216,170,32,216,167,217,134,216,172,216,167,217,133,32,216,180,216,175,34,125]},\"cookie\":[],\"responseTime\":5,\"responseSize\":1015,\"type\":\"http\",\"tempFilePath\":\"\",\"timingPhases\":{\"prepare\":0.4427129998803139,\"wait\":0.3724859990179539,\"dns\":0,\"tcp\":0.10137400031089783,\"firstByte\":3.5363820008933544,\"download\":0.44609300047159195,\"process\":0.03507599979639053,\"total\":4.9341240003705025}},\"request\":{\"url\":{\"protocol\":\"http\",\"port\":\"4000\",\"path\":[\"admin\",\"list\",\"1\",\"10\"],\"host\":[\"127\",\"0\",\"0\",\"1\"],\"query\":[],\"variable\":[]},\"header\":[{\"disabled\":false,\"key\":\"Authorization\",\"value\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWExNzg3ZmI5OWU3NDI0ZWI2ZTU3MWUiLCJyb2xlIjoidXNlciIsImlhdCI6MTc4OTI5NzU5MiwiZXhwIjoxNzg5MzAxMTkyfQ.s0l_lH_0IyYa7ZRBg8V4xYpKUdiPVJDs1Gti95qPKK8\"},{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Accept\",\"value\":\"*/*\",\"system\":true},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\",\"system\":true},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\",\"system\":true},{\"key\":\"Connection\",\"value\":\"keep-alive\",\"system\":true}],\"method\":\"GET\",\"baseUrl\":\"127.0.0.1:4000\",\"body\":{},\"type\":\"http\"},\"history\":{\"execution\":{\"verbose\":false,\"sessions\":{},\"data\":[{\"request\":{\"method\":\"GET\",\"href\":\"http://127.0.0.1:4000/admin/list/1/10\",\"headers\":[{\"key\":\"Authorization\",\"value\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWExNzg3ZmI5OWU3NDI0ZWI2ZTU3MWUiLCJyb2xlIjoidXNlciIsImlhdCI6MTc4OTI5NzU5MiwiZXhwIjoxNzg5MzAxMTkyfQ.s0l_lH_0IyYa7ZRBg8V4xYpKUdiPVJDs1Gti95qPKK8\"},{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Accept\",\"value\":\"*/*\"},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\"},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"}],\"httpVersion\":\"1.1\"},\"response\":{\"statusCode\":200,\"headers\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"1015\"},{\"key\":\"ETag\",\"value\":\"W/\\\"3f7-sO2l8sYbxDXT5pVOYQZBFtRVe7w\\\"\"},{\"key\":\"Date\",\"value\":\"Sun, 13 Sep 2026 11:11:17 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"httpVersion\":\"1.1\"},\"timings\":{\"start\":1789297877245,\"requestStart\":1789297877245,\"offset\":{\"request\":0.4427129998803139,\"socket\":0.8151989988982677,\"connect\":0.9165729992091656,\"response\":4.45295500010252,\"end\":4.899048000574112,\"lookup\":0.8151989988982677,\"done\":4.9341240003705025}}}]}},\"responseValidation\":{\"schema\":{\"valid\":false,\"message\":\"data should have required property users\",\"errors\":[{\"keyword\":\"required\",\"dataPath\":\"\",\"schemaPath\":\"#/required\",\"params\":{\"missingProperty\":\"users\"},\"message\":\"should have required property users\"}]},\"responseCode\":{\"valid\":true}},\"passed\":false,\"timings\":{\"started\":1789297877238,\"preProcessorsStarted\":1789297877240,\"preProcessorsCompleted\":1789297877240,\"postProcessorsStarted\":1789297877251,\"postProcessorsCompleted\":1789297877251,\"completed\":1789297877252},\"metaInfo\":{\"httpApiId\":22003185,\"httpApiCaseId\":31538392,\"httpApiName\":\"Get All Users\",\"httpApiPath\":\"/admin/list/{page}/{limit}\",\"httpApiMethod\":\"get\",\"httpApiCaseName\":\"Success\",\"moduleId\":903739}}",
-                    "visibility": "INHERITED",
-                    "moduleId": 903739,
-                    "categoryId": 0,
-                    "tagIds": [],
-                    "apiTestDataList": [],
-                    "preProcessors": [],
-                    "postProcessors": [],
-                    "inheritPostProcessors": {},
-                    "inheritPreProcessors": {}
-                  }
-                ],
-                "mocks": [],
-                "customApiFields": "{}",
-                "advancedSettings": {
-                  "disabledSystemHeaders": {}
-                },
-                "mockScript": {},
-                "codeSamples": [],
-                "commonResponseStatus": {},
-                "responseChildren": [],
-                "visibility": "INHERITED",
-                "moduleId": 903739,
-                "oasExtensions": "",
-                "type": "http",
-                "preProcessors": [],
-                "postProcessors": [],
-                "inheritPostProcessors": {},
-                "inheritPreProcessors": {}
-              }
-            },
-            {
-              "name": "Admin login",
-              "api": {
-                "id": "22037626",
-                "method": "post",
-                "path": "/admin/login",
-                "parameters": {},
-                "auth": {},
-                "securityScheme": {},
-                "commonParameters": {
-                  "query": [],
-                  "body": [],
-                  "cookie": [],
-                  "header": []
-                },
-                "responses": [
-                  {
-                    "id": "32480087",
-                    "code": 200,
-                    "name": "OK",
-                    "headers": [],
-                    "jsonSchema": {
-                      "type": "object",
-                      "properties": {
-                        "token": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "token"
-                      ]
-                    },
-                    "itemSchema": {},
-                    "description": "",
-                    "contentType": "json",
-                    "mediaType": ""
-                  }
-                ],
-                "responseExamples": [],
-                "requestBody": {
-                  "type": "application/json",
-                  "parameters": [],
-                  "jsonSchema": {
-                    "type": "object",
-                    "properties": {}
-                  },
-                  "mediaType": "",
-                  "examples": [
-                    {
-                      "mediaType": "application/json",
-                      "value": "{\n    \"username\":\"admin\",\n    \"password\":\"124S@d15675\"\n}"
-                    }
-                  ],
-                  "oasExtensions": ""
-                },
-                "description": "",
-                "tags": [],
-                "status": "developing",
-                "serverId": "",
-                "operationId": "",
-                "sourceUrl": "",
-                "ordering": 60,
-                "cases": [
-                  {
-                    "id": 31536264,
-                    "type": "DEBUG_CASE",
-                    "path": null,
-                    "name": "user",
-                    "responseId": "32480087",
-                    "parameters": {
-                      "query": [],
-                      "path": [],
-                      "cookie": [],
-                      "header": []
-                    },
-                    "commonParameters": {
-                      "query": [],
-                      "body": [],
-                      "header": [],
-                      "cookie": []
-                    },
-                    "requestBody": {
-                      "parameters": [],
-                      "data": "{\n    \"username\":\"aliashoriiii\",\n    \"password\":\"Qtlsd@k47\"\n}",
-                      "generateMode": "normal"
-                    },
-                    "auth": {},
-                    "securityScheme": {},
-                    "advancedSettings": {
-                      "disabledSystemHeaders": {},
-                      "isDefaultUrlEncoding": 3,
-                      "disableUrlEncoding": false
-                    },
-                    "requestResult": "{\"id\":\"temp.27411b14-074c-4b11-ba16-bb4503cb729c\",\"cursor\":{\"position\":0,\"iteration\":0,\"length\":1,\"cycles\":1,\"empty\":false,\"eof\":false,\"bof\":true,\"cr\":false,\"ref\":\"27411b14-074c-4b11-ba16-bb4503cb729c\",\"requestIndex\":0,\"httpRequestId\":\"68904e21-7a91-4819-99ef-a40b1a3c0d78\"},\"type\":\"http\",\"response\":{\"id\":\"0e435ffb-7f77-4066-84a1-562ebf590e77\",\"status\":\"OK\",\"code\":200,\"header\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Access-Control-Allow-Origin\",\"value\":\"*\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"326\"},{\"key\":\"ETag\",\"value\":\"W/\\\"146-Dmnims3Bbwf1eGtcji7eid0ov44\\\"\"},{\"key\":\"Date\",\"value\":\"Sun, 28 Dec 2025 22:05:26 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"trailer\":[],\"stream\":{\"type\":\"Buffer\",\"data\":[123,34,115,117,99,99,101,115,115,102,117,108,108,121,34,58,116,114,117,101,44,34,100,97,116,97,34,58,123,34,116,111,107,101,110,34,58,34,101,121,74,104,98,71,99,105,79,105,74,73,85,122,73,49,78,105,73,115,73,110,82,53,99,67,73,54,73,107,112,88,86,67,74,57,46,101,121,74,49,99,50,86,121,83,87,81,105,79,105,73,50,79,84,82,109,77,106,77,50,89,122,77,53,90,84,85,119,77,68,69,48,90,68,74,106,78,122,89,122,77,68,65,105,76,67,74,121,98,50,120,108,73,106,111,105,100,88,78,108,99,105,73,115,73,109,108,104,100,67,73,54,77,84,99,50,78,106,107,49,79,84,85,121,78,105,119,105,90,88,104,119,73,106,111,120,78,122,89,50,79,84,89,122,77,84,73,50,102,81,46,74,119,115,51,106,83,71,90,100,117,109,56,73,104,102,109,51,53,122,65,120,45,110,73,99,75,52,107,79,65,90,82,70,45,118,65,52,71,67,56,105,69,65,34,44,34,114,111,108,101,34,58,34,117,115,101,114,34,125,44,34,115,116,97,116,117,115,67,111,100,101,34,58,50,48,48,44,34,109,101,115,115,97,103,101,34,58,34,216,185,217,133,217,132,219,140,216,167,216,170,32,216,168,216,167,32,217,133,217,136,217,129,217,130,219,140,216,170,32,216,167,217,134,216,172,216,167,217,133,32,216,180,216,175,34,125]},\"cookie\":[],\"responseTime\":187,\"responseSize\":326,\"type\":\"http\",\"tempFilePath\":\"\",\"timingPhases\":{\"prepare\":1.5501709999516606,\"wait\":1.8338059997186065,\"dns\":0,\"tcp\":0.3994620004668832,\"firstByte\":182.63981899991632,\"download\":1.332723000086844,\"process\":0.10123299993574619,\"total\":187.85721400007606}},\"request\":{\"url\":{\"protocol\":\"http\",\"port\":\"4000\",\"path\":[\"users\",\"login\"],\"host\":[\"127\",\"0\",\"0\",\"1\"],\"query\":[],\"variable\":[]},\"header\":[{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Content-Type\",\"value\":\"application/json\"},{\"key\":\"Accept\",\"value\":\"*/*\",\"system\":true},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\",\"system\":true},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\",\"system\":true},{\"key\":\"Connection\",\"value\":\"keep-alive\",\"system\":true},{\"key\":\"Content-Length\",\"value\":61,\"system\":true}],\"method\":\"POST\",\"baseUrl\":\"127.0.0.1:4000\",\"body\":{\"mode\":\"raw\",\"raw\":\"{\\n    \\\"username\\\":\\\"aliashoriiii\\\",\\n    \\\"password\\\":\\\"Qtlsd@k47\\\"\\n}\",\"generateMode\":\"normal\",\"type\":\"application/json\"},\"type\":\"http\"},\"history\":{\"execution\":{\"verbose\":false,\"sessions\":{},\"data\":[{\"request\":{\"method\":\"POST\",\"href\":\"http://127.0.0.1:4000/users/login\",\"headers\":[{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Content-Type\",\"value\":\"application/json\"},{\"key\":\"Accept\",\"value\":\"*/*\"},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\"},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Content-Length\",\"value\":\"61\"}],\"httpVersion\":\"1.1\"},\"response\":{\"statusCode\":200,\"headers\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Access-Control-Allow-Origin\",\"value\":\"*\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"326\"},{\"key\":\"ETag\",\"value\":\"W/\\\"146-Dmnims3Bbwf1eGtcji7eid0ov44\\\"\"},{\"key\":\"Date\",\"value\":\"Sun, 28 Dec 2025 22:05:26 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"httpVersion\":\"1.1\"},\"timings\":{\"start\":1766959526056,\"requestStart\":1766959526058,\"offset\":{\"request\":1.5501709999516606,\"socket\":3.383976999670267,\"connect\":3.7834390001371503,\"response\":186.42325800005347,\"end\":187.7559810001403,\"lookup\":3.383976999670267,\"done\":187.85721400007606}}}]}},\"responseValidation\":{\"schema\":{\"valid\":false,\"message\":\"data should have required property token\",\"errors\":[{\"keyword\":\"required\",\"dataPath\":\"\",\"schemaPath\":\"#/required\",\"params\":{\"missingProperty\":\"token\"},\"message\":\"should have required property token\"}]},\"responseCode\":{\"valid\":true}},\"passed\":false,\"timings\":{\"started\":1766959526047,\"preProcessorsStarted\":1766959526048,\"preProcessorsCompleted\":1766959526048,\"postProcessorsStarted\":1766959526247,\"postProcessorsCompleted\":1766959526247,\"completed\":1766959526253},\"metaInfo\":{\"httpApiId\":22037626,\"httpApiCaseId\":31536264,\"httpApiName\":\"User Login\",\"httpApiPath\":\"/users/login\",\"httpApiMethod\":\"post\",\"httpApiCaseName\":\"user\",\"moduleId\":903739}}",
-                    "visibility": "INHERITED",
-                    "moduleId": 903739,
-                    "categoryId": 0,
-                    "tagIds": [],
-                    "apiTestDataList": [],
-                    "preProcessors": [],
-                    "postProcessors": [],
-                    "inheritPostProcessors": {},
-                    "inheritPreProcessors": {}
-                  },
-                  {
-                    "id": 35118684,
-                    "type": "DEBUG_CASE",
-                    "path": null,
-                    "name": "doctor",
-                    "responseId": "32480087",
-                    "parameters": {
-                      "query": [],
-                      "path": [],
-                      "cookie": [],
-                      "header": []
-                    },
-                    "commonParameters": {
-                      "query": [],
-                      "body": [],
-                      "header": [],
-                      "cookie": []
-                    },
-                    "requestBody": {
-                      "parameters": [],
-                      "data": "{\n    \"username\":\"alifarvahar\",\n    \"password\":\"Qtlsd@k47\"\n}",
-                      "generateMode": "normal"
-                    },
-                    "auth": {},
-                    "securityScheme": {},
-                    "advancedSettings": {
-                      "disabledSystemHeaders": {},
-                      "isDefaultUrlEncoding": 3,
-                      "disableUrlEncoding": false
-                    },
-                    "requestResult": "{\"id\":\"temp.a6d87424-3746-4b5f-82e6-42098a8124e2\",\"cursor\":{\"position\":0,\"iteration\":0,\"length\":1,\"cycles\":1,\"empty\":false,\"eof\":false,\"bof\":true,\"cr\":false,\"ref\":\"a6d87424-3746-4b5f-82e6-42098a8124e2\",\"requestIndex\":0,\"httpRequestId\":\"07a89dbe-64cf-47cf-a409-ae68ad19b323\"},\"type\":\"http\",\"response\":{\"id\":\"dc556eb9-339c-443a-84dc-0de77aa7491d\",\"status\":\"OK\",\"code\":200,\"header\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Access-Control-Allow-Origin\",\"value\":\"*\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"330\"},{\"key\":\"ETag\",\"value\":\"W/\\\"14a-CiikfugCNOn4IkdfytNOcIyGuC0\\\"\"},{\"key\":\"Date\",\"value\":\"Fri, 26 Dec 2025 21:58:27 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"trailer\":[],\"stream\":{\"type\":\"Buffer\",\"data\":[123,34,115,117,99,99,101,115,115,102,117,108,108,121,34,58,116,114,117,101,44,34,100,97,116,97,34,58,123,34,116,111,107,101,110,34,58,34,101,121,74,104,98,71,99,105,79,105,74,73,85,122,73,49,78,105,73,115,73,110,82,53,99,67,73,54,73,107,112,88,86,67,74,57,46,101,121,74,49,99,50,86,121,83,87,81,105,79,105,73,50,79,84,81,49,90,71,82,106,79,71,77,49,77,68,99,122,89,122,82,107,79,68,74,108,78,109,85,122,90,106,81,105,76,67,74,121,98,50,120,108,73,106,111,105,90,71,57,106,100,71,57,121,73,105,119,105,97,87,70,48,73,106,111,120,78,122,89,50,78,122,103,50,77,122,65,51,76,67,74,108,101,72,65,105,79,106,69,51,78,106,89,51,79,68,107,53,77,68,100,57,46,54,113,116,71,110,113,88,67,116,83,77,65,57,102,68,51,79,66,78,45,71,71,109,78,81,105,109,109,113,114,57,109,68,70,88,101,109,57,114,52,108,104,73,34,44,34,114,111,108,101,34,58,34,100,111,99,116,111,114,34,125,44,34,115,116,97,116,117,115,67,111,100,101,34,58,50,48,48,44,34,109,101,115,115,97,103,101,34,58,34,216,185,217,133,217,132,219,140,216,167,216,170,32,216,168,216,167,32,217,133,217,136,217,129,217,130,219,140,216,170,32,216,167,217,134,216,172,216,167,217,133,32,216,180,216,175,34,125]},\"cookie\":[],\"responseTime\":172,\"responseSize\":330,\"type\":\"http\",\"tempFilePath\":\"\",\"timingPhases\":{\"prepare\":4.9092240002937615,\"wait\":2.7030499996617436,\"dns\":0,\"tcp\":0.5582680003717542,\"firstByte\":166.27798799984157,\"download\":2.4148699999786913,\"process\":0.26387799996882677,\"total\":177.12727800011635}},\"request\":{\"url\":{\"protocol\":\"http\",\"port\":\"4000\",\"path\":[\"users\",\"login\"],\"host\":[\"127\",\"0\",\"0\",\"1\"],\"query\":[],\"variable\":[]},\"header\":[{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Content-Type\",\"value\":\"application/json\"},{\"key\":\"Accept\",\"value\":\"*/*\",\"system\":true},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\",\"system\":true},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\",\"system\":true},{\"key\":\"Connection\",\"value\":\"keep-alive\",\"system\":true},{\"key\":\"Content-Length\",\"value\":60,\"system\":true}],\"method\":\"POST\",\"baseUrl\":\"127.0.0.1:4000\",\"body\":{\"mode\":\"raw\",\"raw\":\"{\\n    \\\"username\\\":\\\"alifarvahar\\\",\\n    \\\"password\\\":\\\"Qtlsd@k47\\\"\\n}\",\"generateMode\":\"normal\",\"type\":\"application/json\"},\"type\":\"http\"},\"history\":{\"execution\":{\"verbose\":false,\"sessions\":{},\"data\":[{\"request\":{\"method\":\"POST\",\"href\":\"http://127.0.0.1:4000/users/login\",\"headers\":[{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Content-Type\",\"value\":\"application/json\"},{\"key\":\"Accept\",\"value\":\"*/*\"},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\"},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Content-Length\",\"value\":\"60\"}],\"httpVersion\":\"1.1\"},\"response\":{\"statusCode\":200,\"headers\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Access-Control-Allow-Origin\",\"value\":\"*\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"330\"},{\"key\":\"ETag\",\"value\":\"W/\\\"14a-CiikfugCNOn4IkdfytNOcIyGuC0\\\"\"},{\"key\":\"Date\",\"value\":\"Fri, 26 Dec 2025 21:58:27 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"httpVersion\":\"1.1\"},\"timings\":{\"start\":1766786306923,\"requestStart\":1766786306928,\"offset\":{\"request\":4.9092240002937615,\"socket\":7.612273999955505,\"connect\":8.17054200032726,\"response\":174.44853000016883,\"end\":176.86340000014752,\"lookup\":7.612273999955505,\"done\":177.12727800011635}}}]}},\"responseValidation\":{\"schema\":{\"valid\":false,\"message\":\"data should have required property token\",\"errors\":[{\"keyword\":\"required\",\"dataPath\":\"\",\"schemaPath\":\"#/required\",\"params\":{\"missingProperty\":\"token\"},\"message\":\"should have required property token\"}]},\"responseCode\":{\"valid\":true}},\"passed\":false,\"timings\":{\"started\":1766786306913,\"preProcessorsStarted\":1766786306915,\"preProcessorsCompleted\":1766786306915,\"postProcessorsStarted\":1766786307104,\"postProcessorsCompleted\":1766786307104,\"completed\":1766786307111},\"metaInfo\":{\"httpApiId\":22037626,\"httpApiCaseId\":35118684,\"httpApiName\":\"User Login\",\"httpApiPath\":\"/users/login\",\"httpApiMethod\":\"post\",\"httpApiCaseName\":\"doctor\",\"moduleId\":903739}}",
-                    "visibility": "INHERITED",
-                    "moduleId": 903739,
-                    "categoryId": 0,
-                    "tagIds": [],
-                    "apiTestDataList": [],
-                    "preProcessors": [],
-                    "postProcessors": [],
-                    "inheritPostProcessors": {},
-                    "inheritPreProcessors": {}
-                  },
-                  {
-                    "id": 31538436,
-                    "type": "DEBUG_CASE",
-                    "path": null,
-                    "name": "admin",
-                    "responseId": "32480087",
-                    "parameters": {
-                      "query": [],
-                      "path": [],
-                      "cookie": [],
-                      "header": []
-                    },
-                    "commonParameters": {
-                      "query": [],
-                      "body": [],
-                      "header": [],
-                      "cookie": []
-                    },
-                    "requestBody": {
-                      "parameters": [],
-                      "data": "{\n    \"username\":\"admin\",\n    \"password\":\"Aa@123456\"\n}",
-                      "generateMode": "normal"
-                    },
-                    "auth": {},
-                    "securityScheme": {},
-                    "advancedSettings": {
-                      "disabledSystemHeaders": {},
-                      "isDefaultUrlEncoding": 3,
-                      "disableUrlEncoding": false
-                    },
-                    "requestResult": "{\"id\":\"temp.8f097b5d-cd97-4964-9e3d-2c57e8891e60\",\"cursor\":{\"position\":0,\"iteration\":0,\"length\":1,\"cycles\":1,\"empty\":false,\"eof\":false,\"bof\":true,\"cr\":false,\"ref\":\"8f097b5d-cd97-4964-9e3d-2c57e8891e60\",\"requestIndex\":0,\"httpRequestId\":\"35837b02-c999-4733-899c-3490c7329eb6\"},\"type\":\"http\",\"response\":{\"id\":\"de96b332-c14e-4ece-8f46-2cec4be259b7\",\"status\":\"OK\",\"code\":200,\"header\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Access-Control-Allow-Origin\",\"value\":\"*\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"328\"},{\"key\":\"ETag\",\"value\":\"W/\\\"148-VcZTDQmkFhP/nuU4fv81J7J15RA\\\"\"},{\"key\":\"Date\",\"value\":\"Tue, 16 Dec 2025 20:46:59 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"trailer\":[],\"stream\":{\"type\":\"Buffer\",\"data\":[123,34,115,117,99,99,101,115,115,102,117,108,108,121,34,58,116,114,117,101,44,34,100,97,116,97,34,58,123,34,116,111,107,101,110,34,58,34,101,121,74,104,98,71,99,105,79,105,74,73,85,122,73,49,78,105,73,115,73,110,82,53,99,67,73,54,73,107,112,88,86,67,74,57,46,101,121,74,49,99,50,86,121,83,87,81,105,79,105,73,50,79,84,78,109,77,109,81,120,78,71,82,106,78,106,86,108,77,106,69,52,90,84,81,120,79,87,70,107,90,87,85,105,76,67,74,121,98,50,120,108,73,106,111,105,89,87,82,116,97,87,52,105,76,67,74,112,89,88,81,105,79,106,69,51,78,106,85,53,77,84,103,119,77,84,107,115,73,109,86,52,99,67,73,54,77,84,99,50,78,84,107,121,77,84,89,120,79,88,48,46,110,49,65,84,112,72,77,102,121,68,78,120,65,52,118,54,116,48,55,103,55,84,55,111,118,110,48,75,104,112,75,110,87,79,117,111,56,83,54,121,111,113,52,34,44,34,114,111,108,101,34,58,34,97,100,109,105,110,34,125,44,34,115,116,97,116,117,115,67,111,100,101,34,58,50,48,48,44,34,109,101,115,115,97,103,101,34,58,34,216,185,217,133,217,132,219,140,216,167,216,170,32,216,168,216,167,32,217,133,217,136,217,129,217,130,219,140,216,170,32,216,167,217,134,216,172,216,167,217,133,32,216,180,216,175,34,125]},\"cookie\":[],\"responseTime\":185,\"responseSize\":328,\"type\":\"http\",\"tempFilePath\":\"\",\"timingPhases\":{\"prepare\":2.249790000030771,\"wait\":1.6800550000043586,\"dns\":0,\"tcp\":0.5003679998917505,\"firstByte\":179.94682200008538,\"download\":2.6304049999453127,\"process\":0.3162640000227839,\"total\":187.32370399998035}},\"request\":{\"url\":{\"protocol\":\"http\",\"port\":\"4000\",\"path\":[\"users\",\"login\"],\"host\":[\"127\",\"0\",\"0\",\"1\"],\"query\":[],\"variable\":[]},\"header\":[{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Content-Type\",\"value\":\"application/json\"},{\"key\":\"Accept\",\"value\":\"*/*\",\"system\":true},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\",\"system\":true},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\",\"system\":true},{\"key\":\"Connection\",\"value\":\"keep-alive\",\"system\":true},{\"key\":\"Content-Length\",\"value\":54,\"system\":true}],\"method\":\"POST\",\"baseUrl\":\"127.0.0.1:4000\",\"body\":{\"mode\":\"raw\",\"raw\":\"{\\n    \\\"username\\\":\\\"admin\\\",\\n    \\\"password\\\":\\\"Aa@123456\\\"\\n}\",\"generateMode\":\"normal\",\"type\":\"application/json\"},\"type\":\"http\"},\"history\":{\"execution\":{\"verbose\":false,\"sessions\":{},\"data\":[{\"request\":{\"method\":\"POST\",\"href\":\"http://127.0.0.1:4000/users/login\",\"headers\":[{\"key\":\"User-Agent\",\"value\":\"Apidog/1.0.0 (https://apidog.com)\"},{\"key\":\"Content-Type\",\"value\":\"application/json\"},{\"key\":\"Accept\",\"value\":\"*/*\"},{\"key\":\"Host\",\"value\":\"127.0.0.1:4000\"},{\"key\":\"Accept-Encoding\",\"value\":\"gzip, deflate, br\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Content-Length\",\"value\":\"54\"}],\"httpVersion\":\"1.1\"},\"response\":{\"statusCode\":200,\"headers\":[{\"key\":\"X-Powered-By\",\"value\":\"Express\"},{\"key\":\"Access-Control-Allow-Origin\",\"value\":\"*\"},{\"key\":\"Content-Type\",\"value\":\"application/json; charset=utf-8\"},{\"key\":\"Content-Length\",\"value\":\"328\"},{\"key\":\"ETag\",\"value\":\"W/\\\"148-VcZTDQmkFhP/nuU4fv81J7J15RA\\\"\"},{\"key\":\"Date\",\"value\":\"Tue, 16 Dec 2025 20:46:59 GMT\"},{\"key\":\"Connection\",\"value\":\"keep-alive\"},{\"key\":\"Keep-Alive\",\"value\":\"timeout=5\"}],\"httpVersion\":\"1.1\"},\"timings\":{\"start\":1765918019746,\"requestStart\":1765918019748,\"offset\":{\"request\":2.249790000030771,\"socket\":3.9298450000351295,\"connect\":4.43021299992688,\"response\":184.37703500001226,\"end\":187.00743999995757,\"lookup\":3.9298450000351295,\"done\":187.32370399998035}}}]}},\"responseValidation\":{\"schema\":{\"valid\":false,\"message\":\"data should have required property token\",\"errors\":[{\"keyword\":\"required\",\"dataPath\":\"\",\"schemaPath\":\"#/required\",\"params\":{\"missingProperty\":\"token\"},\"message\":\"should have required property token\"}]},\"responseCode\":{\"valid\":true}},\"passed\":false,\"timings\":{\"started\":1765918019733,\"preProcessorsStarted\":1765918019736,\"preProcessorsCompleted\":1765918019736,\"postProcessorsStarted\":1765918019936,\"postProcessorsCompleted\":1765918019936,\"completed\":1765918020010},\"metaInfo\":{\"httpApiId\":22037626,\"httpApiCaseId\":31538436,\"httpApiName\":\"User Login\",\"httpApiPath\":\"/users/login\",\"httpApiMethod\":\"post\",\"httpApiCaseName\":\"admin\",\"moduleId\":903739}}",
                     "visibility": "INHERITED",
                     "moduleId": 903739,
                     "categoryId": 0,

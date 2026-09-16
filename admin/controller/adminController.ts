@@ -7,6 +7,36 @@ import { Request, Response } from "express";
 import { RequestWithUser } from "../../shared/interfaces/request-with-payload.interface";
 import { IUser } from "../../shared/models/user.interface";
 import { ObjectId } from "mongodb";
+import { configFile } from "../../config/config";
+import mailServerService from "../services/mailServer.service";
+
+async function registerUser(req:Request, res:Response) {
+  try {
+    const body = req.body
+    const username = body.username;
+    const userFound = await model.UserModel.findOne({username});
+    if (userFound) {
+      const response = new SuccessResponse({},false,409,systemErrors.USERNAMEEXISTED)
+      return res.status(409).json(response);
+    }
+    const fullName = body.fullName;
+    const password = body.password;
+    const hashedPassword = await hash(String(password), 10);
+    const newUser = await model.UserModel.create({
+      username,
+      fullName,
+      email: username+"@"+configFile.emailAddress,
+      password: hashedPassword,
+    });
+    await mailServerService.addEmail(username+"@"+configFile.emailAddress,body.password)
+    const response = new SuccessResponse({username: newUser.username, fullName: newUser.fullName, role: newUser.role},true,201,systemErrors.SUCCESSFUL)
+    return res.status(201).json(response);
+  } catch (error) {
+    console.log("Server Error RegisterUser",error)
+    const response = new SuccessResponse({},false,500,systemErrors.SERVERERROR)
+    return res.status(500).json(response);
+  }
+}
 
 async function updateUserByAdmin(req: RequestWithUser,res: Response) {
   try {
@@ -20,7 +50,9 @@ async function updateUserByAdmin(req: RequestWithUser,res: Response) {
     if (updateData.newPassword) {
       const hashedPassword = await hash(updateData.newPassword, 10);
       user.password = hashedPassword
+      await mailServerService.updateEmail(user.username+"@"+configFile.emailAddress,user.password)
     }
+
     if (updateData.username){
       if (await model.UserModel.findOne({username:updateData.username})) {
         const response = new SuccessResponse({},false,409,systemErrors.USERNAMEEXISTED)
@@ -78,8 +110,9 @@ async function deleteUser(req:RequestWithUser, res:Response) {
       const response = new SuccessResponse({},false,404,systemErrors.USERNOTFOUNDED)
       return res.status(404).json(response);
     } else {
-      const response = new SuccessResponse(user)
-      return res.status(200).json(response);
+      const userRes = new SuccessResponse(user)
+      await mailServerService.deleteEmail(userRes.data.email)
+      return res.status(200).json(userRes);
     }
   } catch (error) {
     console.log("Server Error DeleteUser",error)
@@ -114,31 +147,6 @@ async function allUser(req:RequestWithUser, res:Response) {
 
 
 
-async function registerUser(req:Request, res:Response) {
-  try {
-    const body = req.body
-    const username = body.username;
-    const userFound = await model.UserModel.findOne({username});
-    if (userFound) {
-      const response = new SuccessResponse({},false,409,systemErrors.USERNAMEEXISTED)
-      return res.status(409).json(response);
-    }
-    const fullName = body.fullName;
-    const password = body.password;
-    const hashedPassword = await hash(String(password), 10);
-    const newUser = await model.UserModel.create({
-      username,
-      fullName,
-      password: hashedPassword,
-    });
-    const response = new SuccessResponse({username: newUser.username, fullName: newUser.fullName, role: newUser.role},true,201,systemErrors.SUCCESSFUL)
-    return res.status(201).json(response);
-  } catch (error) {
-    console.log("Server Error RegisterUser",error)
-    const response = new SuccessResponse({},false,500,systemErrors.SERVERERROR)
-    return res.status(500).json(response);
-  }
-}
 
 async function updateUser(req: RequestWithUser,res: Response) {
   try {

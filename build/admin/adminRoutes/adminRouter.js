@@ -1,0 +1,23 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+const express_1 = __importDefault(require("express"));
+const authentication_middleware_1 = __importDefault(require("../../middleware/authentication.middleware"));
+const update_user_dto_1 = require("../../shared/middlewares/request/update-user.dto");
+const data_validator_middleware_1 = require("../../shared/middlewares/data-validator.middleware");
+const user_param_dto_1 = require("../../shared/middlewares/request/user-param.dto");
+const user_pagination_dto_1 = require("../../shared/middlewares/request/user-pagination.dto");
+const enum_1 = require("../../shared/models/enum");
+const adminController_1 = __importDefault(require("../controller/adminController"));
+const create_user_dto_1 = require("../../shared/middlewares/request/create-user.dto");
+const login_user_dto_1 = require("../../shared/middlewares/request/login-user.dto");
+const adminRouter = express_1.default.Router();
+adminRouter.post("/create", create_user_dto_1.RegisterUserDto, data_validator_middleware_1.DataValidator, adminController_1.default.registerUser);
+adminRouter.get("/byId/:userId", authentication_middleware_1.default.Authentication, authentication_middleware_1.default.Authorization([enum_1.UserRoles.ADMIN]), user_param_dto_1.ParamUserIdDto, data_validator_middleware_1.DataValidator, adminController_1.default.getUserByAdmin);
+adminRouter.put("/update/:userId", authentication_middleware_1.default.Authentication, authentication_middleware_1.default.Authorization([enum_1.UserRoles.ADMIN]), user_param_dto_1.ParamUserIdDto, update_user_dto_1.UpdateUserDto, data_validator_middleware_1.DataValidator, adminController_1.default.updateUserByAdmin);
+adminRouter.delete("/delete/:userId", authentication_middleware_1.default.Authentication, authentication_middleware_1.default.Authorization([enum_1.UserRoles.ADMIN]), user_param_dto_1.ParamUserIdDto, data_validator_middleware_1.DataValidator, adminController_1.default.deleteUser);
+adminRouter.get("/list/:page/:limit", authentication_middleware_1.default.Authentication, authentication_middleware_1.default.Authorization([enum_1.UserRoles.ADMIN]), user_pagination_dto_1.ParamGetAllUserDto, data_validator_middleware_1.DataValidator, adminController_1.default.allUser);
+adminRouter.get("/", authentication_middleware_1.default.Authentication, authentication_middleware_1.default.Authorization([enum_1.UserRoles.ADMIN, enum_1.UserRoles.USER]), adminController_1.default.getUser);
+adminRouter.post("/login", login_user_dto_1.LoginUserDto, data_validator_middleware_1.DataValidator, adminController_1.default.loginUser);
+module.exports = adminRouter;

@@ -1,0 +1,109 @@
+services:
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: mail-api
+
+    restart: unless-stopped
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - .env
+
+    environment:
+      NODE_ENV: production
+      MAILSERVER_CONTAINER: mailserver
+
+    depends_on:
+      - mailserver
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  mailserver:
+    image: mailserver/docker-mailserver:latest
+    container_name: mailserver
+
+    hostname: mail
+    domainname: jahangirkhodro.ir
+
+    ports:
+      - "25:25"
+      - "143:143"
+      - "587:587"
+      - "993:993"
+
+    volumes:
+      - ./mail-data:/var/mail
+      - ./mail-state:/var/mail-state
+      - ./mail-logs:/var/log/mail
+      - ./config:/tmp/docker-mailserver
+
+    environment:
+      - ENABLE_RSPAMD=0
+      - ENABLE_CLAMAV=0
+      - ENABLE_FAIL2BAN=0
+      - ENABLE_POSTGREY=0
+
+    cap_add:
+      - NET_ADMIN
+
+    restart: unless-stopped
+
+  mail-init:
+    image: mailserver/docker-mailserver:latest
+    depends_on:
+      - mailserver
+    # entrypoint: >
+    #   sh -c "
+    #   sleep 15 &&
+    #   setup email add admin@jahangirkhodro.ir admin123456 &&
+    #   setup email add info@jahangirkhodro.ir 123456
+    #   "
+    volumes:
+      - ./mail-data:/var/mail
+      - ./mail-state:/var/mail-state
+      - ./config:/tmp/docker-mailserver
+
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    container_name: roundcube
+
+    depends_on:
+      - mailserver
+
+    ports:
+      - "8080:80"
+
+    environment:
+      ROUNDCUBEMAIL_DEFAULT_HOST: mailserver
+      ROUNDCUBEMAIL_DEFAULT_PORT: 143
+
+      ROUNDCUBEMAIL_SMTP_SERVER: mailserver
+      ROUNDCUBEMAIL_SMTP_PORT: 587
+
+      ROUNDCUBEMAIL_DB_TYPE: sqlite
+    
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongo-example1
+    restart: unless-stopped
+
+    ports:
+      - "27017:27017"
+
+    environment:
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
