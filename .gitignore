@@ -1,5 +1,4 @@
 *.swp
-config
 mail-data
 mail-logs
 mail-state
