@@ -102,21 +102,64 @@ async function getUserByAdmin(req:RequestWithUser, res:Response) {
 }
 
 
-async function deleteUser(req:RequestWithUser, res:Response) {
+async function deleteUser(req: RequestWithUser, res: Response) {
   try {
-    const id = req.params["userId"]
-    const user = await model.UserModel.findByIdAndDelete(id);
+    const id = req.params["userId"];
+
+    // First find the user
+    const user = await model.UserModel.findById(id);
+
     if (!user) {
-      const response = new SuccessResponse({},false,404,systemErrors.USERNOTFOUNDED)
+      const response = new SuccessResponse(
+        {},
+        false,
+        404,
+        systemErrors.USERNOTFOUNDED
+      );
+
       return res.status(404).json(response);
-    } else {
-      const userRes = new SuccessResponse(user)
-      await mailServerService.deleteEmail(userRes.data.email)
-      return res.status(200).json(userRes);
     }
+
+    // Check if the user is an admin
+    if (user.role === "admin" || user.role === "Admin") {
+
+      // Count how many admins currently exist
+      const adminCount = await model.UserModel.countDocuments({
+        role: "admin"
+      });
+
+      // Don't allow deleting the last admin
+      if (adminCount <= 1) {
+        const response = new SuccessResponse(
+          {},
+          false,
+          403,
+          "Cannot delete the last admin"
+        );
+
+        return res.status(403).json(response);
+      }
+    }
+
+    // Now delete the user
+    const deletedUser = await model.UserModel.findByIdAndDelete(id);
+
+    const userRes = new SuccessResponse(deletedUser);
+
+    await mailServerService.deleteEmail(userRes.data.email);
+
+    return res.status(200).json(userRes);
+
   } catch (error) {
-    console.log("Server Error DeleteUser",error)
-    const response = new SuccessResponse({},false,500,systemErrors.SERVERERROR)
+    console.log("Server Error DeleteUser", error);
+
+    const response = new SuccessResponse(
+      {},
+      false,
+      500,
+      systemErrors.SERVERERROR
+    );
+
     return res.status(500).send(response);
   }
 }

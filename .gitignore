@@ -3,3 +3,5 @@ mail-data
 mail-logs
 mail-state
 node_modules
+.env
+docker-compose.*
