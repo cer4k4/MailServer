@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 import { configFile } from "../config/config";
 
 async function getConnectionDB() {
-    await mongoose.connect(`mongodb://${configFile.adminUsername}:${configFile.adminPassword}@${configFile.dbHost}:${configFile.dbPort}/${configFile.dbName}`).then(() => {
+    console.log("loggggggggg",`mongodb://${configFile.dbUser}:${configFile.dbPassword}@${configFile.dbHost}:${configFile.dbPort}/${configFile.dbName}?authSource=admin`)
+    await mongoose.connect(`mongodb://${configFile.dbUser}:${configFile.dbPassword}@${configFile.dbHost}:${configFile.dbPort}/${configFile.dbName}?authSource=admin`).then(() => {
         console.log("Connected to database");
     }).catch((error) => {
         console.log("Error:", error);

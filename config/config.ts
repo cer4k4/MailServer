@@ -9,6 +9,8 @@ export const configFile = {
   "hostAddress": process.env.HOST_ADDRESS,
   "hostPort": process.env.HOST_PORT,
   "dbHost": process.env.DB_HOST,
+  "dbPassword": process.env.DB_PASSWORD,
+  "dbUser": process.env.DB_USER,
   "dbName": process.env.DB_NAME,
   "dbPort": process.env.DB_PORT,
   "emailAddress": process.env.EMAIL_ADDRESS,
