@@ -4,7 +4,7 @@ import baseModel from "./baseModel"
 const userSchema: Schema = new Schema({
   username: { type: String, required: true, unique: true },
   fullName: { type: String },
-  role:     { type: String, default: UserRoles.ADNIN, required: true },
+  role:     { type: String, default: UserRoles.ADMIN, required: true },
   email:    { type: String },
   password: { type: String, required: true },
   ...baseModel,

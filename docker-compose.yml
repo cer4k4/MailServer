@@ -1,7 +1,10 @@
 services:
 
   backend:
-    image: api-mail-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+
     container_name: mail-api
 
     restart: unless-stopped
@@ -15,10 +18,6 @@ services:
     environment:
       NODE_ENV: production
       MAILSERVER_CONTAINER: mailserver
-      DB_HOST: 94.101.185.186
-      DB_PORT: 27017
-      DB_PASSWORD: asdf1212Zxcv
-      DB_USER: admin
 
     depends_on:
       - mailserver
@@ -38,7 +37,6 @@ services:
       - "143:143"
       - "587:587"
       - "993:993"
-
 
     volumes:
       - /home/aka/mail-data:/var/mail
@@ -103,10 +101,6 @@ services:
 
     environment:
       MONGO_INITDB_DATABASE: ${DB_NAME}
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: asdf1212Zxcv
-
-    command: ["mongod", "--bind_ip_all"]
 
     volumes:
       - mongo_data:/data/db
