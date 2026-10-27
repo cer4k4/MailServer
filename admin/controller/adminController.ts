@@ -29,7 +29,7 @@ async function registerUser(req:Request, res:Response) {
       password: hashedPassword,
     });
     await mailServerService.addEmail(username+"@"+configFile.emailAddress,body.password)
-    const response = new SuccessResponse({username: newUser.username, fullName: newUser.fullName, role: newUser.role},true,201,systemErrors.SUCCESSFUL)
+    const response = new SuccessResponse({username: newUser.username, fullName: newUser.fullName, role: UserRoles.ADMIN},true,201,systemErrors.SUCCESSFUL)
     return res.status(201).json(response);
   } catch (error) {
     console.log("Server Error RegisterUser",error)
@@ -251,7 +251,7 @@ async function loginUser(req:Request, res:Response) {
       userId: userFound.id,
       username: username,
       password: password,
-      role: UserRoles.USER,
+      role: UserRoles.ADMIN,
       fullName: userFound.fullName as string,
     };
     const response = new SuccessResponse(auth.generateToken(user))
