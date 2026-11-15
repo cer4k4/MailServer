@@ -54,7 +54,8 @@ async function updateUserByAdmin(req: RequestWithUser,res: Response) {
     }
 
     if (updateData.username){
-      if (await model.UserModel.findOne({username:updateData.username})) {
+      const findByusername = (await model.UserModel.findOne({username:updateData.username})) as IUser 
+      if (findByusername.username !== user.username) {
         const response = new SuccessResponse({},false,409,systemErrors.USERNAMEEXISTED)
         return res.status(409).json(response);
       }
