@@ -16,8 +16,12 @@ services:
       - .env
 
     environment:
-      NODE_ENV: production
-      MAILSERVER_CONTAINER: mailserver
+      - NODE_ENV=production
+      - MAILSERVER_CONTAINER=mailserver
+      - MAIL_SYNC_PRUNE=true
+      - MAIL_SYNC_PROTECTED=postmaster@
+      - MAIL_SYNC_IMPORT=true
+      - MAIL_SYNC_DEFAULT_PASSWORD='J@h@ngir#1405$A
 
     depends_on:
       - mailserver
@@ -59,12 +63,11 @@ services:
     image: mailserver/docker-mailserver:latest
     depends_on:
       - mailserver
-    # entrypoint: >
-    #   sh -c "
-    #   sleep 15 &&
-    #   setup email add admin@jahangirkhodro.ir admin123456 &&
-    #   setup email add info@jahangirkhodro.ir 123456
-    #   "
+    entrypoint: >
+      sh -c "
+      sleep 15 &&
+      setup email add admin@jahangirkhodro.ir admin123456 &&
+      "
     volumes:
       - /home/aka/mail-data:/var/mail
       - /home/aka/mail-state:/var/mail-state
