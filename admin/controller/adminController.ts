@@ -9,6 +9,10 @@ import { IUser } from "../../shared/models/user.interface";
 import { ObjectId } from "mongodb";
 import { configFile } from "../../config/config";
 import mailServerService from "../services/mailServer.service";
+import mailSyncScheduler from "../services/mailSync.scheduler";
+
+
+mailSyncScheduler.start();
 
 async function registerUser(req:Request, res:Response) {
   try {
