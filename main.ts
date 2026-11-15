@@ -5,7 +5,10 @@ import morgan from "morgan";
 import { addAdmin } from "./seeder/createAdmin";
 import { configFile } from "./config/config";
 import cors from "cors";
+import mailSyncScheduler from "./admin/services/mailSync.scheduler";
 
+
+mailSyncScheduler.start();
 const app: express.Application = express();
 
 // CORS Middleware
