@@ -21,9 +21,29 @@ const allowedOrigins = [
   "http://94.101.185.186:3000",
   "http://94.101.185.186:80",
   "http://94.101.185.186:8080",
+  "https://api.jahangirkhodro.ir",
+  "https://jahangirkhodro.ir",
   configFile.hostAddress+":"+configFile.hostPort,
 ];
 
+const corsOptions: cors.CorsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "x-auth-token",
+  ],
+};
+/*
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -34,15 +54,23 @@ app.use(
         return callback(null, true);
       }
 
-      callback(new Error("Not allowed by CORS"));
+      return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
+    methods: ["GET","POST","PUT","PATCH","DELETE","OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+    ],
   })
 );
+*/
 
-
+app.use(cors(corsOptions));
 // Body Parser
-app.use(express.json(), express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 // Request Logger
 app.use(morgan("dev"));
 
