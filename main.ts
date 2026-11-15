@@ -5,10 +5,10 @@ import morgan from "morgan";
 import { addAdmin } from "./seeder/createAdmin";
 import { configFile } from "./config/config";
 import cors from "cors";
-import mailSyncScheduler from "./admin/services/mailSync.scheduler";
+//import mailSyncScheduler from "./admin/services/mailSync.scheduler";
 
-mailSyncScheduler.start();
-mailSyncScheduler.resetAllPasswords();
+//mailSyncScheduler.start();
+//mailSyncScheduler.resetAllPasswords();
 
 const app: express.Application = express();
 
