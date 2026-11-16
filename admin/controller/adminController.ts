@@ -177,6 +177,7 @@ async function allUser(req:RequestWithUser, res:Response) {
     if (!page || page <= 0){
       page = Number(1)
     }
+
     const offset = (page - 1) * limit
     const allUsers = await model.UserModel.find({}).skip(offset).limit(limit);
     const response = new SuccessResponse(allUsers)
@@ -265,11 +266,6 @@ async function loginUser(req:Request, res:Response) {
   }
 }
 
-
-
-
-
-
 async function checkRoles(role:string) {
   for (let r of Object(UserRoles).values){
     if (role === r) {
@@ -280,4 +276,4 @@ async function checkRoles(role:string) {
 }
 
 
-export = { getUserByAdmin , updateUserByAdmin , deleteUser , allUser , getUser,registerUser,updateUser,loginUser};
+export = { getUserByAdmin, updateUserByAdmin, deleteUser, allUser, getUser, registerUser, updateUser, loginUser };

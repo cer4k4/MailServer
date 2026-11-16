@@ -5,11 +5,9 @@ import morgan from "morgan";
 import { addAdmin } from "./seeder/createAdmin";
 import { configFile } from "./config/config";
 import cors from "cors";
-//import mailSyncScheduler from "./admin/services/mailSync.scheduler";
-
-//mailSyncScheduler.start();
+import mailServerService from "./admin/services/mailServer.service";
+mailServerService.SyncEmails();
 //mailSyncScheduler.resetAllPasswords();
-
 const app: express.Application = express();
 
 // CORS Middleware
@@ -47,6 +45,7 @@ const corsOptions: cors.CorsOptions = {
     "x-auth-token",
   ],
 };
+
 /*
 app.use(
   cors({

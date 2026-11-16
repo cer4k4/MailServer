@@ -21,7 +21,7 @@ services:
       - MAIL_SYNC_PRUNE=true
       - MAIL_SYNC_PROTECTED=postmaster@
       - MAIL_SYNC_IMPORT=true
-      - MAIL_SYNC_DEFAULT_PASSWORD='J@h@ngir#1405$A
+      - MAIL_SYNC_DEFAULT_PASSWORD=J@h@ngir#1405$A
 
     depends_on:
       - mailserver
@@ -63,11 +63,11 @@ services:
     image: mailserver/docker-mailserver:latest
     depends_on:
       - mailserver
-    entrypoint: >
-      sh -c "
-      sleep 15 &&
-      setup email add admin@jahangirkhodro.ir admin123456 &&
-      "
+        #entrypoint: >
+      #sh -c "
+      #sleep 15 &&
+      #setup email add admin@jahangirkhodro.ir admin123456 &&
+      #"
     volumes:
       - /home/aka/mail-data:/var/mail
       - /home/aka/mail-state:/var/mail-state
@@ -103,6 +103,8 @@ services:
       - "27017:27017"
 
     environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
       MONGO_INITDB_DATABASE: ${DB_NAME}
 
     volumes:
