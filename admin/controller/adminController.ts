@@ -49,7 +49,7 @@ async function updateUserByAdmin(req: RequestWithUser,res: Response) {
       return res.status(404).json(response);
     }
     if (updateData.newPassword) {
-      await mailServerService.updateEmail(user.username+"@"+configFile.emailAddress,user.password)
+      await mailServerService.updateEmail(user.username+"@"+configFile.emailAddress,req.body.newPassword)
       const hashedPassword = await hash(updateData.newPassword, 10);
       user.password = hashedPassword
     }
