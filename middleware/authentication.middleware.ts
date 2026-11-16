@@ -37,7 +37,7 @@ async function Authentication(req: RequestWithPayload, res: Response, next: Next
     
     const payload:IPayload = jwt.verify(token, secretKey) as IPayload;
     console.log(payload.userId)
-    const userFound = await model.UserModel.findById(payload.userId) as IUser;
+    const userFound = (await model.UserModel.findOne({ _id: payload.userId })) as IUser | null;
     
     if (!userFound) {
       const response = new SuccessResponse({},false,404,systemErrors.USERNOTFOUNDEDTOKEN)
