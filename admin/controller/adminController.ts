@@ -54,7 +54,7 @@ async function updateUserByAdmin(req: RequestWithUser,res: Response) {
       const hashedPassword = await hash(updateData.newPassword, 10);
       user.password = hashedPassword
     }
-
+    
     if (updateData.username){
       const findByusername = (await model.UserModel.findOne({username:updateData.username})) as IUser 
       if (findByusername.username !== user.username) {
