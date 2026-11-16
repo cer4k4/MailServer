@@ -104,7 +104,7 @@ class MailServerService {
   }
 
   async updateEmail(email: string, password: string) {
-
+    console.log("updateEmail",email,password)
     return this.runSetup([
       "email",
       "update",
@@ -131,6 +131,7 @@ class MailServerService {
   }
   async SyncEmails() {
     const DEFAULT_PASSWORD = process.env.MAIL_SYNC_DEFAULT_PASSWORD;
+    console.log("jjjjjjjjjjjjjj",DEFAULT_PASSWORD)
     if (!DEFAULT_PASSWORD) {
       throw new Error("MAIL_SYNC_DEFAULT_PASSWORD is not set");
     }
