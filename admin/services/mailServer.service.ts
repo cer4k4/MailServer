@@ -175,6 +175,7 @@ class MailServerService {
         await model.UserModel.create({
           username,
           fullName: username,
+          email: username+'@'+domain,
           password: hashedDefault,
           role: defaultRole,
         });
