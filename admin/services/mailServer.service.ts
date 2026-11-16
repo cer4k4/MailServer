@@ -1,11 +1,8 @@
 // services/mailServer.service.ts
 import model from "../../shared/models/userSchema";
-import { systemErrors, UserRoles } from "../../shared/models/enum"
-import { hash, compare } from "bcrypt";
-import { IUser } from "../../shared/models/user.interface";
-import { ObjectId } from "mongodb";
+import { UserRoles } from "../../shared/models/enum"
+import { hash } from "bcrypt";
 import { execFile } from "child_process";
-import { config } from "dotenv";
 import { promisify } from "util";
 import { configFile } from "../../config/config";
 
@@ -138,27 +135,34 @@ class MailServerService {
       throw new Error("MAIL_SYNC_DEFAULT_PASSWORD is not set");
     }
 
-    const domain = configFile.emailAddress;
+    // نرمال‌سازی دامنه
+    const domain = String(configFile.emailAddress).trim().toLowerCase().replace(/^@/, "");
 
-  // ۱) لیست ایمیل‌های سرور => فقط username های همین دامنه
     const result = await this.listEmails();
+    if (!result.success) {
+      throw new Error(result.stderr || "listEmails failed");
+    }
+
     const serverUsernames = new Set<string>(
-      (result.stdout as string)
+      String(result.stdout)
         .split("\n")
-        .map((line: string) => line.match(/^\*\s+(\S+)@(\S+?)\s/))
+        .map((line: string) => line.match(/^\*\s+([^@\s]+)@(\S+)\s/))
         .filter((m): m is RegExpMatchArray => m !== null)
         .filter((m) => m[2].toLowerCase() === domain)
         .map((m) => m[1].toLowerCase())
     );
 
-    // ۲) username های Mongo
     const users = await model.UserModel.find({}, { username: 1 }).lean();
     const mongoUsernames = new Set<string>(
       users.map((u: any) => u.username?.toLowerCase()).filter(Boolean)
     );
 
-    // ۳) یتیم‌ها: روی سرور هست، در Mongo نیست
     const orphans = [...serverUsernames].filter((u) => !mongoUsernames.has(u));
+
+    console.log("SYNC domain:", domain);
+    console.log("SYNC server:", [...serverUsernames]);
+    console.log("SYNC mongo:", [...mongoUsernames]);
+    console.log("SYNC orphans:", orphans);
 
     const hashedDefault = await hash(DEFAULT_PASSWORD, 10);
     const defaultRole = /* نقش پیش‌فرض پروژه‌ات */ undefined;
@@ -175,17 +179,18 @@ class MailServerService {
           role: defaultRole,
         });
 
-        const res = await this.updateEmail(
-          `${username}@${configFile.emailAddress}`,
-          DEFAULT_PASSWORD // خام به سرور
-        );
+        const res = await this.updateEmail(`${username}@${domain}`, DEFAULT_PASSWORD);
+        console.log("SYNC updateEmail", username, res);
         if (!res.success) throw new Error(res.stderr || "updateEmail failed");
 
         synced.push(username);
       } catch (err: any) {
+        console.log("SYNC failed", username, err);
         failed.push({ username, reason: err?.message ?? String(err) });
       }
     }
+
+    console.log("SYNC result:", { synced, failed });
     return { synced, failed };
   }
 }
