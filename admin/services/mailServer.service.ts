@@ -129,6 +129,7 @@ class MailServerService {
       "list",
     ]);
   }
+  
   async SyncEmails() {
     const DEFAULT_PASSWORD = process.env.MAIL_SYNC_DEFAULT_PASSWORD;
     console.log("jjjjjjjjjjjjjj",DEFAULT_PASSWORD)
@@ -165,13 +166,16 @@ class MailServerService {
     console.log("SYNC mongo:", [...mongoUsernames]);
     console.log("SYNC orphans:", orphans);
 
-    const hashedDefault = await hash(DEFAULT_PASSWORD, 10);
     const defaultRole = /* نقش پیش‌فرض پروژه‌ات */ undefined;
-
+    
     const synced: string[] = [];
     const failed: { username: string; reason: string }[] = [];
-
+    
     for (const username of orphans) {
+      const res = await this.updateEmail(`${username}@${domain}`, DEFAULT_PASSWORD);
+      console.log("SYNC updateEmail", username, res);
+      if (!res.success) throw new Error(res.stderr || "updateEmail failed");
+      const hashedDefault = await hash(DEFAULT_PASSWORD, 10);
       try {
         await model.UserModel.create({
           username,
@@ -181,9 +185,6 @@ class MailServerService {
           role: defaultRole,
         });
 
-        const res = await this.updateEmail(`${username}@${domain}`, DEFAULT_PASSWORD);
-        console.log("SYNC updateEmail", username, res);
-        if (!res.success) throw new Error(res.stderr || "updateEmail failed");
 
         synced.push(username);
       } catch (err: any) {
