@@ -60,9 +60,9 @@ function updateUserByAdmin(req, res) {
                 return res.status(404).json(response);
             }
             if (updateData.newPassword) {
+                yield mailServer_service_1.default.updateEmail(user.username + "@" + config_1.configFile.emailAddress, user.password);
                 const hashedPassword = yield (0, bcrypt_1.hash)(updateData.newPassword, 10);
                 user.password = hashedPassword;
-                yield mailServer_service_1.default.updateEmail(user.username + "@" + config_1.configFile.emailAddress, user.password);
             }
             if (updateData.username) {
                 if (yield userSchema_1.default.UserModel.findOne({ username: updateData.username })) {
