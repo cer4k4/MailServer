@@ -5,8 +5,9 @@ import morgan from "morgan";
 import { addAdmin } from "./seeder/createAdmin";
 import { configFile } from "./config/config";
 import cors from "cors";
-import mailServerService from "./admin/services/mailServer.service";
-mailServerService.SyncEmails();
+//import mailServerService from "./admin/services/mailServer.service";
+//mailServerService.SyncEmails();
+
 //mailSyncScheduler.resetAllPasswords();
 const app: express.Application = express();
 
