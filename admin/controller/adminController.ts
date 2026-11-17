@@ -252,7 +252,6 @@ async function loginUser(req:Request, res:Response) {
     }
     
     if (! await compare(password,userFound.password as string)) {
-      console.log("ddddddddddddddddddddddd",password,userFound)
       const response = new SuccessResponse({},false,400,systemErrors.PASSWORDWRONG)
       return res.status(400).json(response);
     }
