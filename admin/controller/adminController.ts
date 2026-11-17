@@ -49,7 +49,7 @@ async function updateUserByAdmin(req: RequestWithUser,res: Response) {
       return res.status(404).json(response);
     }
     if (updateData.newPassword) {
-      if ( ! compare(updateData.password,user.password as string)) {
+      if ( ! await compare(updateData.password,user.password as string)) {
         const response = new SuccessResponse({},false,400,systemErrors.PASSWORDWRONG)
         return res.status(400).json(response);
       }

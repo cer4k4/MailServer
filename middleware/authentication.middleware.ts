@@ -30,6 +30,7 @@ const Authorization = (roles:UserRoles[]) => {
 async function Authentication(req: RequestWithPayload, res: Response, next: NextFunction) {
   try {
     const token = req.headers.authorization || "";
+    console.log("token",token)
     if (!token) {
       const response = new SuccessResponse({},false,401,systemErrors.TOKENNOTFOUNDED)
       return res.status(401).json(response);
