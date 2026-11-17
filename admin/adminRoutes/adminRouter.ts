@@ -11,7 +11,7 @@ import { LoginUserDto } from "../../shared/middlewares/request/login-user.dto";
 
 
 const adminRouter= express.Router()
-adminRouter.post("/create",RegisterUserDto,DataValidator,adminController.registerUser)
+adminRouter.post("/create",middleware.Authentication,middleware.Authorization([UserRoles.ADMIN]),RegisterUserDto,DataValidator,adminController.registerUser)
 
 adminRouter.get("/byId/:userId",middleware.Authentication,middleware.Authorization([UserRoles.ADMIN]),ParamUserIdDto,DataValidator,adminController.getUserByAdmin)
 
