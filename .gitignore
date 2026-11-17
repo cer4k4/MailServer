@@ -5,3 +5,4 @@ mail-state
 node_modules
 .env
 docker-compose.*
+.env
